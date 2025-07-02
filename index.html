@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>혜리님 프로필</title>
     <link rel="stylesheet" href="assets/style.css" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="profile-card">
       <h1><mark>혜리님</mark> 프로필입니다,</h1>
 
       <div class="card">
+        <section>
+          <div class="photos">
+            <img
+              src="assets/김혜리_010-9887-4646_0.png"
+              alt="Photo 1"
+              width="150"
+            />
+            <img
+              src="assets/김혜리_010-9887-4646_1.png"
+              alt="Photo 2"
+              width="150"
+            />
+            <img
+              src="assets/김혜리_010-9887-4646_2.png"
+              alt="Photo 3"
+              width="150"
+            />
+          </div>
+        </section>
         <section>
           <h2>Personal Info 🧐</h2>
           <ul>
@@ -38,4 +58,28 @@
       </div>
     </div>
   </body>
+  <button onclick="saveImage()">이미지로 저장</button>
 </html>
+<script>
+  function saveImage() {
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    const folderName =
+      pathSegments.length > 0
+        ? pathSegments[pathSegments.length - 1]
+        : "download";
+
+    html2canvas(document.querySelector("#profile-card"), {
+      scale: 2,
+    }).then((canvas) => {
+      const now = new Date();
+
+      const link = document.createElement("a");
+      // 현재 페이지 URL 경로의 마지막 폴더명 + 시간 조합으로 파일명 설정
+      link.download = `${folderName}_${now.getFullYear()}${(now.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+</script>
