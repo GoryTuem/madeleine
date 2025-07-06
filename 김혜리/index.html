@@ -4,28 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>혜리님 프로필</title>
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="madeleine/assets/style.css" />
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
-  <body>
     <div class="container" id="profile-card">
-      <h1><mark>마들렌</mark></h1>
+      <h1><mark>혜리님</mark> 프로필입니다,</h1>
 
       <div class="card">
         <section>
           <div class="photos">
             <img
-              src="./assets/김혜리_010-9887-4646_0.png"
+              src="madeleine/assets/김혜리_010-9887-4646_0.png"
               alt="Photo 1"
               width="150"
             />
             <img
-              src="./assets/김혜리_010-9887-4646_1.png"
+              src="madeleine/assets/김혜리_010-9887-4646_1.png"
               alt="Photo 2"
               width="150"
             />
             <img
-              src="./assets/김혜리_010-9887-4646_2.png"
+              src="madeleine/assets/김혜리_010-9887-4646_2.png"
               alt="Photo 3"
               width="150"
             />
@@ -70,8 +69,6 @@
 
     html2canvas(document.querySelector("#profile-card"), {
       scale: 2,
-      useCORS: false,
-      allowTaint: true, // 외부 리소스로 인해 캔버스 오염 허용 (로컬 이미지일 경우 문제 없음)
     }).then((canvas) => {
       const now = new Date();
 
