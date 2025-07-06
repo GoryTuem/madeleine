@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>혜리님 프로필</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div class="container" id="profile-card">
+      <h1><mark>마들렌</mark></h1>
+
+      <div class="card">
+        <section>
+          <div class="photos">
+            <img src="../assets/윤태현_0.png" alt="Photo 1" width="150" />
+            <img src="../assets/윤태현_1.png" alt="Photo 2" width="150" />
+          </div>
+        </section>
+        <section>
+          <h2>Personal Info 🧐</h2>
+
+          <ul>
+            <li>1994년, 서울시 관악구, 대학교 졸업 (4년),</li>
+            <li>175cm, ISFJ,</li>
+            <li>음주 거의 안 마신다, 비흡연</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What I do 🧘‍♀️</h2>
+          <ul>
+            <li>현재 직장은 IT회사/PM직군 ,</li>
+            <li>💸 연봉 4,000 ~ 6,000 만원 미만 정규직</li>
+            <li>주 5일</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Hobbies 👟</h2>
+          <ul>
+            <li>최근 관심사, 취미생활은 헬스, 부동산 공부</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </body>
+  <button onclick="saveImage()">이미지로 저장</button>
+</html>
+<script>
+  function saveImage() {
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    const folderName =
+      pathSegments.length > 0
+        ? pathSegments[pathSegments.length - 1]
+        : "download";
+
+    html2canvas(document.querySelector("#profile-card"), {
+      scale: 2,
+      useCORS: false,
+      allowTaint: true, // 외부 리소스로 인해 캔버스 오염 허용 (로컬 이미지일 경우 문제 없음)
+    }).then((canvas) => {
+      const now = new Date();
+
+      const link = document.createElement("a");
+      // 현재 페이지 URL 경로의 마지막 폴더명 + 시간 조합으로 파일명 설정
+      link.download = `${folderName}_${now.getFullYear()}${(now.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+</script>
